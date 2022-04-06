@@ -14,6 +14,11 @@ export const Content = styled.div`
     max-width: var(--maxWidth);
     padding: 7px 0;
     margin: 0 auto;
+    h2{
+            
+            font-style: italic;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+    }
     @media screen and (min-width: 720px){
         
         .arrow{
@@ -104,4 +109,31 @@ export const ArrowDown = styled.div`
 	border-left: 5px solid transparent;
 	border-right: 5px solid transparent;
 	border-top: 10px solid #555;
+`;
+
+export const SocialImg = styled.img`
+ width: 20px;
+ height: 20px;
+ padding-left: 10px;
+ cursor: pointer;
+ margin-top: 10%;
+ transition: 0.3s;
+ :hover{
+    transform: scale(2);
+ }
+
+@media screen and (max-width: 500px){
+    width: 20px;
+}
+
+`
+export const SocialLogo= styled.div`
+display: flex;
+h3{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+    @media screen and (max-width: 650px){
+    display: none;
+}
 `;

@@ -1,6 +1,50 @@
 import axios from "axios";
 import { Username } from "../components/authentication/Login/Login.styles";
-import { LOGIN_SUCCESS, LOGIN_FAIL, USER_LOADED_SUCCESS, USER_LOADED_FAIL} from "./types";
+import { 
+    LOGIN_SUCCESS, 
+    LOGIN_FAIL, 
+    USER_LOADED_SUCCESS, 
+    USER_LOADED_FAIL, 
+    AUTHENTICATED_SUCCESS, 
+    AUTHENTICATED_FAIL,
+    SIGNUP_SUCCESS,
+    SIGNUP_FAIL, 
+    LOGOUT
+} from "./types";
+
+export const checkAuthenticated = () => async dispatch => {
+    if (localStorage.getItem('access')) {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            }
+        };
+
+        const body = JSON.stringify({token: localStorage.getItem('access')});
+
+        try{
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}/login`, body, config)
+            if (res.data.code !== 'Invalid token'){
+                dispatch({
+                    type: AUTHENTICATED_SUCCESS
+                });
+            } else {
+                dispatch({
+                    type: AUTHENTICATED_FAIL
+                });
+            }
+        } catch (err){
+            dispatch({
+                type: AUTHENTICATED_FAIL
+            });
+        }
+    } else{
+        dispatch({
+            type: AUTHENTICATED_FAIL
+        });
+    }
+}
 
 export const load_user = () => async dispatch =>{
     if (localStorage.getItem('access')){
@@ -58,3 +102,38 @@ export const login = (username, password) => async dispatch =>{
     }
 
 };
+
+export const signup = (email,full_name,profile_picture,username, phone_number,password) => async dispatch =>{
+    
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+            
+        },
+        
+    };
+    const body = JSON.stringify(email,full_name,profile_picture,username, phone_number,password);
+
+    try {
+        
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/member/signup/`, body, config)
+        dispatch({
+            type: SIGNUP_SUCCESS,
+            payload: res.data,
+            
+        });
+
+        
+    } catch (err){
+        dispatch({
+            type: SIGNUP_FAIL,
+        })
+    }
+
+};
+
+export const logout = () => dispatch => {
+    dispatch({
+        type: LOGOUT
+    });
+}

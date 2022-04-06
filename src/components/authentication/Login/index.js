@@ -8,11 +8,11 @@ import { useFormik } from "formik";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { useHistory } from "react-router";
-import { Link, Redirect } from "react-router-dom";
+import { Link, Redirect, Navigate } from "react-router-dom";
 import { connect } from "react-redux";
 import {login} from '../../../actions/auth'
 
-const Login = ({login}) => {
+const Login = ({login, isAuthenticated}) => {
 
     const getInputValue = (event)=>{
         // show the user input value to console
@@ -55,6 +55,10 @@ const Login = ({login}) => {
     };
 
     // Is the user authenticated?
+    //Redirect them to the home page
+    if (isAuthenticated){
+        return <Navigate to='/home' />
+    }
     return(
         <Wrapper>
             
@@ -80,7 +84,7 @@ const Login = ({login}) => {
 };
 
 const  mapStateToProps = state =>({
-    //Is authenticated
+    isAuthenticated: state.auth.isAuthenticated
 })
 
-export default connect(null, {login}) (Login);
+export default connect(mapStateToProps, {login}) (Login);
