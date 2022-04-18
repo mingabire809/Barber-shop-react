@@ -7,6 +7,7 @@ import Extra from '../../images/extra.jpg'
 import { MenuAdmin, AdminContent, AdminProfile, MainContent } from "./Admin.styles";
 import { func } from "prop-types";
 import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import AdminHeader from "./adminheader";
 
 const Admin = () => {
 
@@ -59,8 +60,10 @@ const Admin = () => {
                 <AdminContent>Logout</AdminContent>
             </MenuAdmin>
             
-               
+            
             <MainContent>
+            <AdminHeader/>
+            
             {booking ? <div className="booking"><h1>Booking</h1></div> :<div></div>}  
               {customer ? <div className="customer"><h1>Customer</h1></div> :<div></div>}  
               {haircut ? <div className="haircut"><h1>Hair cut</h1></div>: <div></div>}  

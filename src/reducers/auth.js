@@ -40,6 +40,9 @@ export default function(state = initialState, action){
                 isAuthenticated: false
             }
         case USER_LOADED_SUCCESS:
+            localStorage.setItem('barber', payload.is_barber)
+            localStorage.setItem('name', payload.full_name)
+            localStorage.setItem('picture', payload.profile_picture)
             return{
                 ...state,
                 user: payload

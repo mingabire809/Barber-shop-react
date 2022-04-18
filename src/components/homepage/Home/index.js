@@ -67,8 +67,8 @@ const Home = () => {
         
        
      <MenuContent>
-        {services ? <MenuText onClick={handleServices} style={{textDecoration:'underline'}}>Services</MenuText>:<MenuText onClick={handleServices}>Services</MenuText>} 
-        {prices ? <MenuText onClick={handlePrices}style={{textDecoration:'underline'}}>Prices</MenuText>: <MenuText onClick={handlePrices}>Prices</MenuText>} 
+        {services ? <MenuText onClick={handleServices} style={{textDecoration:'underline orange 3px'}}>Services</MenuText>:<MenuText onClick={handleServices}>Services</MenuText>} 
+        {prices ? <MenuText onClick={handlePrices}style={{textDecoration:'underline orange 3px'}}>Prices</MenuText>: <MenuText onClick={handlePrices}>Prices</MenuText>} 
          <MenuText onClick={scrollToBottom}>Address</MenuText>
          <MenuText>About Us</MenuText>
          

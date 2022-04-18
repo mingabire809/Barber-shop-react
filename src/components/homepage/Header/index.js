@@ -12,6 +12,8 @@ import { Wrapper, Content, BarberLogo, Profile, HeaderText, ArrowDown, ProfileCo
 import { Link, Navigate } from "react-router-dom";
 
 const Header = (logout, isAuthenticated, load_user) => {
+    const fullName = localStorage.getItem('name')
+    const profiles = localStorage.getItem('picture')
     const guestLinks = () =>(
         <Fragment>
             <li>
@@ -29,6 +31,9 @@ const Header = (logout, isAuthenticated, load_user) => {
     function Logout(){
         localStorage.removeItem('access');
         localStorage.removeItem('refresh');
+        localStorage.removeItem('barber')
+        localStorage.removeItem('picture')
+        localStorage.removeItem('name')
         window.location.pathname=''
     }
     return(
@@ -43,8 +48,8 @@ const Header = (logout, isAuthenticated, load_user) => {
             <h2>Barbershop booking appointment</h2>
                 
            <ProfileContent>
-           <HeaderText>Profile Name</HeaderText>
-            <Profile src={profile} all='profile'/>
+           <HeaderText>{fullName}</HeaderText>
+            <Profile src={profiles} all='profile'/>
             <div className="dropdown">
             <ArrowDown/>
             <div className="dropdown-content">

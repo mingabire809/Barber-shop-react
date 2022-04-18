@@ -57,6 +57,9 @@ const Login = ({login, isAuthenticated}) => {
     // Is the user authenticated?
     //Redirect them to the home page
     if (isAuthenticated){
+        const isBarber = localStorage.getItem('barber')
+        console.log(isBarber)
+        
         return <Navigate to='/home' />
     }
     return(
